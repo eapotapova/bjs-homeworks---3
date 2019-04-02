@@ -58,6 +58,17 @@ function calculateAverageRating(){
 }
 
 function getAverageMark(marks){
-    
-    //return averageMark;
+    let sum = 0;
+
+    if (marks.length>5){
+        marks.length = 5;
+        console.log('Внимание! В расчет среднего значения берутся только первые 5 оценок')
+    };     
+
+    for (let i = 0; i < marks.length; i++) {
+       sum += marks[i];
+    };
+
+    let averageMark = sum/marks.length;
+    return averageMark;
 }
