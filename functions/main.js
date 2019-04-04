@@ -40,3 +40,28 @@ showSolutionsMessage(1,2,3);
 showSolutionsMessage(7,20,-3);
 showSolutionsMessage(2,4,2);
 
+
+
+function getPersonData(secretData) {
+ 
+    function getName(number) {
+     let result;
+     if (number === 0) {
+       result = "Родриго";
+     } else if (number === 1) {
+       result = "Эмильо";
+     }
+    return result;
+    }
+   
+    return {
+     firstName: getName(secretData.aaa),
+     lastName: getName(secretData.bbb)
+    }
+}
+   
+console.log(getPersonData({aaa:0,bbb:0}));
+console.log(getPersonData({aaa:0,bbb:1}));
+console.log(getPersonData({aaa:1,bbb:0}));
+console.log(getPersonData({aaa:1,bbb:1}));
+
