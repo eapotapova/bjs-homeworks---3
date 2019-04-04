@@ -1,4 +1,4 @@
-
+"use strict"
 
 function getSolutions( a, b, c ) {
     
@@ -64,4 +64,55 @@ console.log(getPersonData({aaa:0,bbb:0}));
 console.log(getPersonData({aaa:0,bbb:1}));
 console.log(getPersonData({aaa:1,bbb:0}));
 console.log(getPersonData({aaa:1,bbb:1}));
+
+
+function getAverageScore( data ){
+
+    let totalAverage = 0;
+    let count = 0;
+   
+    for (let prop in data)  {
+     
+     let marks = data[prop];
+  
+  
+     function getAverage(marks) {
+      let sum = 0;
+      
+      for (let i = 0; i < marks.length; i++) {
+         sum += marks[i];
+      };
+  
+      let averageMark = sum/marks.length;
+      return averageMark;
+   
+    } 
+  
+    let result = getAverage(marks);
+    totalAverage += result;
+    count+=1;
+   
+    data[prop] = getAverage(marks)
+    data.avarage = totalAverage/count;  
+ }
+   
+ return data;
+
+}
+  
+
+  
+console.log(getAverageScore({
+    algebra:[2,4,5,2,3,4],
+    geometry:[2,4,5],
+    russian:[3,3,4,5],
+    physics: [5,5],
+    music: [3,3,4],
+    english: [2,2,5],
+    biology: [5,5,3],
+    math: [5,5,4],
+    chemistry: [2]
+} ))
+
+
 
