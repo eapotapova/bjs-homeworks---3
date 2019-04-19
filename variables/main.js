@@ -1,32 +1,40 @@
 "use strict"
-function checkTime() {
-  const now = new Date();
-  let hh = now.getHours();
-  if (hh < 10) hh = '0'+ hh;
 
-  let mm = now.getMinutes();
-  if (mm < 10) mm = '0'+ mm;
+function setDailyRhythm(wakeUpTime, bedTime)  {
 
-  let systemTime = `${hh}:${mm}`
-  
-  return systemTime
-}
-
-function setDailyRhythm(wakeUpTime, bedTime) {
-
- const timerId = setInterval (function setAlarm() {
-  if (checkTime() === wakeUpTime) {
-    goodMorning()
-  } else if (checkTime() === bedTime) {
-    goodNight()
-  }
-  },1000)
-  
-  const goodMorning = ()=> alert("Доброе утро!")
-  const goodNight = ()=> alert ("Пора спать!")
+  setAlarm(wakeUpTime, goodMorning) 
+  setAlarm(bedTime,goodNight);
  
-  setTimeout(() => { clearInterval(timerId) }, 1000);
-} 
-
-setDailyRhythm("07:00", "00:12")
+}
+ 
+const goodNight = ()=> alert("Пора спать!")
+ 
+const goodMorning = ()=> alert("Доброе утро!")
+ 
+function setAlarm(time,callback) {
+ 
+   const timerId = setInterval(()=> {
+     const now = new Date();
+     let hh = now.getHours();
+       if (hh < 10) hh = '0'+ hh;
+ 
+     let mm = now.getMinutes();
+       if (mm < 10) mm = '0'+ mm;
+ 
+      let systemTime = `${hh}:${mm}`
+    
+      return checkTime(systemTime)}, 1000) 
+    
+    const checkTime = (systemTime) => {
+        
+      if ( systemTime === time) {
+        callback()
+     }
+ 
+     setTimeout(() => { clearInterval(timerId) }, 500)
+   }
+}
+ 
+ 
+setDailyRhythm("14:53" , "14:57") 
 
